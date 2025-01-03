@@ -18,7 +18,12 @@ const corsOptions = {
     maxAge: 86400 // CORS preflight cache süresi - 24 saat
 };
 
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: '*',
+  methods: '*',
+  allowedHeaders: '*',
+  credentials: true
+}));
 // OPTIONS istekleri için ek handler
 app.options('*', cors(corsOptions));
 
