@@ -7,9 +7,7 @@ const app = express();
 
 // CORS ayarları
 const corsOptions = {
-    origin: process.env.NODE_ENV === 'production' 
-      ? ['https://my-marketplace-front-end.vercel.app'] // Vercel URL'iniz
-      : ['http://localhost:5173'],
+    origin: "https://my-marketplace-front-end.vercel.app",
     credentials: true
   };
   
