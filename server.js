@@ -5,16 +5,26 @@ require('dotenv').config();
 
 const app = express();
 
-// CORS ayarları
+// CORS ayarları - Güncellenmiş hali
 const corsOptions = {
-    origin: "https://my-marketplace-front-end.vercel.app",
-    credentials: true
-  };
-  
-  app.use(cors(corsOptions));
-  app.use(express.json());
+    origin: [
+        "https://my-marketplace-front-end.vercel.app",
+        "http://localhost:5173",  // Geliştirme ortamı için
+        "http://localhost:3000"
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    credentials: true,
+    maxAge: 86400 // CORS preflight cache süresi - 24 saat
+};
 
-// Routes
+app.use(cors(corsOptions));
+// OPTIONS istekleri için ek handler
+app.options('*', cors(corsOptions));
+
+app.use(express.json());
+
+// Routes - bunlar aynı kalacak
 app.use('/api/auth', require('./src/routes/auth'));
 app.use('/api/products', require('./src/routes/products'));
 app.use('/api/cart', require('./src/routes/cart'));
