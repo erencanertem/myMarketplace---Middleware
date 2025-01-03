@@ -8,7 +8,7 @@ const app = express();
 // CORS ayarları
 const corsOptions = {
     origin: process.env.NODE_ENV === 'production' 
-      ? ['https://marketplacebyerencan.netlify.app/'] // Vercel URL'iniz
+      ? ['https://my-marketplace-front-end.vercel.app'] // Vercel URL'iniz
       : ['http://localhost:5173'],
     credentials: true
   };
